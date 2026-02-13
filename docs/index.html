@@ -356,39 +356,61 @@
 
         @media (max-width: 600px) {
             .container {
-                padding: 15px;
-                max-width: 90%;
+                padding: 10px;
+                max-width: 95%;
             }
 
             .glass-card {
-                padding: 40px 30px;
+                padding: 30px 20px;
             }
 
             .profile-name {
-                font-size: 30px;
+                font-size: 26px;
+                margin-bottom: 12px;
             }
 
             .profile-bio {
-                font-size: 14px;
+                font-size: 13px;
+                margin-bottom: 25px;
+                line-height: 1.6;
             }
 
             .link-button {
-                padding: 16px 24px;
-                font-size: 15px;
+                padding: 14px 20px;
+                font-size: 14px;
+                gap: 10px;
+            }
+
+            .link-button i {
+                font-size: 20px;
+            }
+
+            .links-container {
+                gap: 12px;
             }
 
             .avatar-wrapper {
-                width: 120px;
-                height: 120px;
+                width: 90px;
+                height: 90px;
+                margin-bottom: 20px;
             }
 
             .avatar {
-                width: 120px;
-                height: 120px;
+                width: 90px;
+                height: 90px;
             }
 
             .avatar i {
-                font-size: 60px;
+                font-size: 45px;
+            }
+
+            .divider {
+                margin: 15px 0;
+            }
+
+            .divider-text {
+                font-size: 11px;
+                margin-top: 12px;
             }
 
             .footer {
@@ -396,11 +418,52 @@
                 bottom: 15px;
             }
         }
+
+        @media (max-width: 400px) {
+            .glass-card {
+                padding: 25px 15px;
+            }
+
+            .profile-name {
+                font-size: 24px;
+            }
+
+            .profile-bio {
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+
+            .link-button {
+                padding: 12px 18px;
+                font-size: 13px;
+            }
+
+            .avatar-wrapper {
+                width: 80px;
+                height: 80px;
+            }
+
+            .avatar {
+                width: 80px;
+                height: 80px;
+            }
+
+            .avatar i {
+                font-size: 40px;
+            }
+
+            .divider-text {
+                font-size: 10px;
+            }
+        }
+                bottom: 15px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- 背景の立ち絵画像 -->
-    <img src="img/character-stand.png" alt="" class="background-character">
+    <img src="character-stand.png" alt="" class="background-character">
 
     <!-- 装飾パーティクル -->
     <div class="particles">
@@ -419,7 +482,7 @@
             <div class="avatar-wrapper">
                 <div class="avatar">
                     <!-- アバター画像 -->
-                    <img src="img/avatar.png" alt="しのめぐ">
+                    <img src="avatar.png" alt="しのめぐ">
                 </div>
             </div>
             
