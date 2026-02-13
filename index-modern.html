@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>しのめぐ's Profile - Modern</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Yomogi', cursive;
+            min-height: 200vh;
+            background: linear-gradient(135deg, #ffadd1 0%, #ff5599 50%, #ff006a 100%);
+            background-attachment: fixed;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 背景のアニメーション図形 */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            right: -200px;
+            animation: float1 20s ease-in-out infinite;
+        }
+
+        body::after {
+            width: 400px;
+            height: 400px;
+            bottom: -100px;
+            left: -100px;
+            animation: float2 15s ease-in-out infinite;
+        }
+
+        /* 背景の立ち絵画像 */
+        .background-character {
+            position: absolute;
+            top: 0;
+            left: -50px;
+            height: 180vh;
+            width: auto;
+            opacity: 0.8;
+            z-index: 0;
+            pointer-events: none;
+            object-fit: contain;
+            object-position: top left;
+        }
+
+        @media (max-width: 1200px) {
+            .background-character {
+                left: -100px;
+                height: 150vh;
+                opacity: 0.6;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .background-character {
+                left: -150px;
+                height: 120vh;
+                opacity: 0.4;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .background-character {
+                left: -200px;
+                height: 100vh;
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-100px, 100px) rotate(180deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(100px, -100px) rotate(180deg); }
+        }
+
+        .container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* グラスモーフィズムカード */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 50px 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+        }
+
+        .avatar {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .avatar i {
+            font-size: 70px;
+            color: rgba(255, 255, 255, 0.9);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .profile-bio {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .link-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 18px 28px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .link-button:hover::before {
+            opacity: 1;
+        }
+
+        .link-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .link-button i {
+            font-size: 22px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        /* リンクごとのアニメーション遅延 */
+        .link-button:nth-child(1) { animation-delay: 0.2s; }
+        .link-button:nth-child(2) { animation-delay: 0.3s; }
+        .link-button:nth-child(3) { animation-delay: 0.4s; }
+        .divider { animation: fadeInUp 0.6s ease-out 0.5s backwards; }
+        .link-button:nth-child(5) { animation-delay: 0.6s; }
+
+        /* リンクごとの色味調整 */
+        .twitter-link {
+            background: rgba(0, 0, 0, 0.75);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .twitter-link:hover {
+            background: rgba(20, 20, 20, 0.85);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .youtube-link {
+            background: rgba(255, 0, 0, 0.6);
+            border-color: rgba(255, 0, 0, 0.8);
+        }
+
+        .youtube-link:hover {
+            background: rgba(255, 0, 0, 0.75);
+        }
+
+        .twitch-link {
+            background: rgba(145, 70, 255, 0.6);
+            border-color: rgba(145, 70, 255, 0.8);
+        }
+
+        .twitch-link:hover {
+            background: rgba(145, 70, 255, 0.75);
+        }
+
+        /* 区切り線 */
+        .divider {
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+
+        .divider-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .divider-text {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+            margin-bottom: -10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 10px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        /* 装飾的なパーティクル */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100vh) translateX(50px);
+            }
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 10s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 14s; }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            .glass-card {
+                padding: 40px 30px;
+            }
+
+            .profile-name {
+                font-size: 30px;
+            }
+
+            .profile-bio {
+                font-size: 14px;
+            }
+
+            .link-button {
+                padding: 16px 24px;
+                font-size: 15px;
+            }
+
+            .avatar-wrapper {
+                width: 120px;
+                height: 120px;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .avatar i {
+                font-size: 60px;
+            }
+
+            .footer {
+                font-size: 11px;
+                bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景の立ち絵画像 -->
+    <img src="character-stand.png" alt="" class="background-character">
+
+    <!-- 装飾パーティクル -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="glass-card">
+            <div class="avatar-wrapper">
+                <div class="avatar">
+                    <!-- アバター画像 -->
+                    <img src="avatar.png" alt="しのめぐ">
+                </div>
+            </div>
+            
+            <h1 class="profile-name">しのめぐ</h1>
+            <p class="profile-bio">メインはFortnite。<br>たまにマイクラ/ぷよテトも。<br>まじめです。たぶん。</p>
+
+            <div class="links-container">
+                <a href="https://twitter.com/7znty" target="_blank" class="link-button twitter-link">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span>@7znty</span>
+                </a>
+
+                <a href="https://www.youtube.com/@4noMegu" target="_blank" class="link-button youtube-link">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+
+                <a href="https://www.twitch.tv/shinomegu" target="_blank" class="link-button twitch-link">
+                    <i class="fa-brands fa-twitch"></i>
+                    <span>Twitch</span>
+                </a>
+
+                <!-- 区切り線 -->
+                <div class="divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-text">TEAM</div>
+                </div>
+
+                <a href="https://x.com/ForTune_FN" target="_blank" class="link-button twitter-link">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span>@ForTune_FN</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 しのめぐ
+    </div>
+</body>
+</html>
